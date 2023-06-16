@@ -1,37 +1,33 @@
-		#!/bin/bash
-		
-<<<<<<< HEAD
-		# Gather information from host
-=======
-		# Gather information from this host
->>>>>>> 8765071646ffd806d5a0ef7a0d638f5f5bd4e116
-		HOSTNAME=$(hostname)
-		UPTIME=$(uptime -p | sed 's/up //')
-		INTERNAL_IP=$(hostname -I | awk '{print $1}')
-		EXTERNAL_IP=$(curl -s ifconfig.me)
-		DISTRO=$(lsb_release -d | cut -f2-)
-		KERNEL=$(uname -r)
-		ARCH=$(uname -m)
-		NUM_CPUS=$(nproc)
-		CPU_USAGE=$(top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}')
-		DISK_TOTAL=$(df -h --output=size --total | awk 'END {print $1}')
-		DISK_USAGE=$(df -h | awk '$NF=="/"{printf "%s", $5}')
-		MEMORY_TOTAL=$(free -h | awk '/^Mem:/ {print $2}')
-		MEMORY_USAGE=$(free -m | awk 'NR==2{printf "%.2f%%", $3*100/$2 }')
-		NUM_PROCS=$(ps -e | wc -l)
-		LISTENING_PORTS=$(sudo ss -tuln | awk '{split($5, a, ":"); if (a[2] > 1024) print $1, a[2]}' | sort -k2n | awk '{printf "%s-%s, ", $1, $2}')
-		
-		# Format and print information
-		echo "---------------------------------"
-		echo "Server Profile: "
-		echo "---------------------------------"
-		echo "Hostname: $HOSTNAME"
-		echo "Distro/Kernel: $DISTRO, $KERNEL ($ARCH)"
-		echo "IP Addresses: $INTERNAL_IP (int), $EXTERNAL_IP (ext)"
-		echo "CPU: $CPU_USAGE% of $NUM_CPUS"
-		echo "Disk: $DISK_USAGE of $DISK_TOTAL"
-		echo "Memory: $MEMORY_USAGE of $MEMORY_TOTAL"
-		echo "Number of Processes: $NUM_PROCS"
-		echo "Busy TCP/UDP Ports (1024-9999): $LISTENING_PORTS"
-		echo "Uptime: $UPTIME"
-		echo "---------------------------------" ; echo
+#!/bin/bash
+# Gather information from this host
+
+HOSTNAME=$(hostname)
+UPTIME=$(uptime -p | sed 's/up //')
+INTERNAL_IP=$(hostname -I | awk '{print $1}')
+EXTERNAL_IP=$(curl -s ifconfig.me)
+DISTRO=$(lsb_release -d | cut -f2-)
+KERNEL=$(uname -r)
+ARCH=$(uname -m)
+NUM_CPUS=$(nproc)
+CPU_USAGE=$(top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}')
+DISK_TOTAL=$(df -h --output=size --total | awk 'END {print $1}')
+DISK_USAGE=$(df -h | awk '$NF=="/"{printf "%s", $5}')
+MEMORY_TOTAL=$(free -h | awk '/^Mem:/ {print $2}')
+MEMORY_USAGE=$(free -m | awk 'NR==2{printf "%.2f%%", $3*100/$2 }')
+NUM_PROCS=$(ps -e | wc -l)
+LISTENING_PORTS=$(sudo ss -tuln | awk '{split($5, a, ":"); if (a[2] > 1024) print $1, a[2]}' | sort -k2n | awk '{printf "%s-%s, ", $1, $2}')
+
+# Format and print information
+echo "---------------------------------"
+echo "Server Profile: "
+echo "---------------------------------"
+echo "Hostname: $HOSTNAME"
+echo "Distro/Kernel: $DISTRO, $KERNEL ($ARCH)"
+echo "IP Addresses: $INTERNAL_IP (int), $EXTERNAL_IP (ext)"
+echo "CPU: $CPU_USAGE% of $NUM_CPUS"
+echo "Disk: $DISK_USAGE of $DISK_TOTAL"
+echo "Memory: $MEMORY_USAGE of $MEMORY_TOTAL"
+echo "Number of Processes: $NUM_PROCS"
+echo "Busy TCP/UDP Ports (1024-9999): $LISTENING_PORTS"
+echo "Uptime: $UPTIME"
+echo "---------------------------------" ; echo
