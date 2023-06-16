@@ -1,6 +1,10 @@
 		#!/bin/bash
 		
+<<<<<<< HEAD
+		# Gather information from host
+=======
 		# Gather information from this host
+>>>>>>> 8765071646ffd806d5a0ef7a0d638f5f5bd4e116
 		HOSTNAME=$(hostname)
 		UPTIME=$(uptime -p | sed 's/up //')
 		INTERNAL_IP=$(hostname -I | awk '{print $1}')
