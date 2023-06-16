@@ -1,5 +1,5 @@
 #!/bin/bash
-# Gather information from this host
+# Gather information from host
 
 HOSTNAME=$(hostname)
 UPTIME=$(uptime -p | sed 's/up //')
