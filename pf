@@ -19,9 +19,8 @@ LISTENING_PORTS=$(sudo ss -tuln | awk '{split($5, a, ":"); if (a[2] > 1024) prin
 
 # Format and print information
 echo "---------------------------------"
-echo "Server Profile: "
+echo "Server Profile: $HOSTNAME"
 echo "---------------------------------"
-echo "Hostname: $HOSTNAME"
 echo "Distro/Kernel: $DISTRO, $KERNEL ($ARCH)"
 echo "IP Addresses: $INTERNAL_IP (int), $EXTERNAL_IP (ext)"
 echo "CPU: $CPU_USAGE% of $NUM_CPUS"
